@@ -1,0 +1,24 @@
+5. Sequential File Allocation in C
+Code:
+#include &lt;stdio.h&gt;
+int main() {
+FILE *file = fopen(&quot;testfile.txt&quot;, &quot;w&quot;);
+if (file == NULL) {
+printf(&quot;Error opening file.\n&quot;);
+return 1;
+}
+fprintf(file, &quot;Hello, this is a sequential file allocation test.\n&quot;);
+fclose(file);
+printf(&quot;File written successfully.\n&quot;);
+file = fopen(&quot;testfile.txt&quot;, &quot;r&quot;);
+char ch;
+while ((ch = fgetc(file)) != EOF) {
+putchar(ch);
+}
+
+fclose(file);
+return 0;
+}
+Expected Output:
+File written successfully.
+Hello, this is a sequential file allocation test.
