@@ -1,0 +1,38 @@
+
+
+// Two-Level Directory
+
+Struct TwoLevelDir {
+Char user[10][20];
+Char files[10][10][20];
+Int file_count[10];
+};
+Void createTwoLevelFile(struct TwoLevelDir *dir, int user_index, char filename[]) {
+Strcpy(dir-&gt;files[user_index][dir-&gt;file_count[user_index]++], filename);
+}
+Void displayTwoLevelFiles(struct TwoLevelDir *dir, int user_index) {
+For (int I = 0; I &lt; dir-&gt;file_count[user_index]; i++)
+Printf(“%s\n”, dir-&gt;files[user_index][i]);
+}
+
+Int main() {
+Int blockSize[] = {100, 500, 200, 300, 600};
+Int processSize[] = {212, 417, 112, 426};
+firstFit(blockSize, 5, processSize, 4);
+
+int requests[] = {98, 183, 37, 122, 14, 124, 65, 67};
+fcfsDiskScheduling(requests, 8, 53);
+scanDiskScheduling(requests, 8, 53, 200);
+
+struct SingleLevelDir singleDir = {.count = 0};
+createSingleFile(&amp;singleDir, “file1.txt”);
+createSingleFile(&amp;singleDir, “file2.txt”);
+displaySingleFiles(&amp;singleDir);
+
+struct TwoLevelDir twoDir = {0};
+createTwoLevelFile(&amp;twoDir, 0, “user1_file1.txt”);
+createTwoLevelFile(&amp;twoDir, 0, “user1_file2.txt”);
+displayTwoLevelFiles(&amp;twoDir, 0);
+
+return 0;
+}
