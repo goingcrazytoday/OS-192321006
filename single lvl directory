@@ -1,0 +1,13 @@
+
+
+// Single-Level Directory
+Struct SingleLevelDir {
+Char files[10][20];
+Int count;
+};
+Void createSingleFile(struct SingleLevelDir *dir, char filename[]) {
+Strcpy(dir-&gt;files[dir-&gt;count++], filename);
+}
+Void displaySingleFiles(struct SingleLevelDir *dir) {
+For (int I = 0; I &lt; dir-&gt;count; i++)
+Printf(“%s\n”, dir-&gt;files[i]);
