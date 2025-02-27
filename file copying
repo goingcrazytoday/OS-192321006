@@ -1,0 +1,34 @@
+Ex.No 2: File Copying
+C Program:
+#include &lt;stdio.h&gt;
+#include &lt;stdlib.h&gt;
+void copyFile(const char *source, const char *destination) {
+FILE *src = fopen(source, &quot;r&quot;);
+FILE *dest = fopen(destination, &quot;w&quot;);
+char ch;
+if (src == NULL || dest == NULL) {
+printf(&quot;Error opening file!\n&quot;);
+return;
+}
+while ((ch = fgetc(src)) != EOF) {
+fputc(ch, dest);
+}
+
+printf(&quot;File copied successfully!\n&quot;);
+fclose(src);
+fclose(dest);
+}
+int main() {
+char srcFile[100], destFile[100];
+printf(&quot;Enter source file name: &quot;);
+scanf(&quot;%s&quot;, srcFile);
+printf(&quot;Enter destination file name: &quot;);
+scanf(&quot;%s&quot;, destFile);
+copyFile(srcFile, destFile);
+return 0;
+}
+Sample Output:
+Enter source file name: input.txt
+Enter destination file name: output.txt
+File copied successfully!
+
