@@ -1,0 +1,31 @@
+#include &lt;stdio.h&gt;
+#include &lt;stdlib.h&gt;
+#include &lt;limits.h&gt;
+#include &lt;string.h&gt;
+
+// First Fit Memory Allocation
+Void firstFit(int blockSize[], int m, int processSize[], int n) {
+Int allocation[n];
+Memset(allocation, -1, sizeof(allocation));
+
+For (int I = 0; I &lt; n; i++) {
+For (int j = 0; j &lt; m; j++) {
+If (blockSize[j] &gt;= processSize[i]) {
+Allocation[i] = j;
+blockSize[j] -= processSize[i];
+break;
+}
+}
+}
+
+Printf(“Process No.\tProcess Size\tBlock No.\n”);
+For (int I = 0; I &lt; n; i++) {
+Printf(“%d\t\t%d\t\t”, I + 1, processSize[i]);
+If (allocation[i] != -1)
+Printf(“%d\n”, allocation[i] + 1);
+Else
+Printf(“Not Allocated\n”);
+
+}
+}
+
