@@ -1,0 +1,36 @@
+2. Inter-Process Communication (Using Pipes)
+Program:
+#include &lt;stdio.h&gt;
+#include &lt;unistd.h&gt;
+#include &lt;string.h&gt;
+int main() {
+int fd[2];
+pid_t pid;
+char write_msg[] = &quot;Hello from parent&quot;;
+char read_msg[20];
+if (pipe(fd) == -1) {
+printf(&quot;Pipe failed&quot;);
+return 1;
+}
+pid = fork();
+if (pid &lt; 0) {
+printf(&quot;Fork failed&quot;);
+return 1;
+}
+
+if (pid &gt; 0) { // Parent process
+close(fd[0]); // Close reading end
+write(fd[1], write_msg, strlen(write_msg) + 1);
+close(fd[1]); // Close writing end
+} else { // Child process
+close(fd[1]); // Close writing end
+read(fd[0], read_msg, sizeof(read_msg));
+printf(&quot;Child read: %s\n&quot;, read_msg);
+close(fd[0]); // Close reading end
+}
+return 0;
+}
+Input:
+No user input required.
+Output:
+Child read: Hello from parent
