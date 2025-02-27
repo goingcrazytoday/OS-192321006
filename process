@@ -1,0 +1,13 @@
+
+
+
+// Process requests
+For (int I = 0; I &lt; n; i++) {
+If (requests[i] &gt;= head) {
+Seek_time += abs(head – requests[i]);
+Head = requests[i];
+}
+}
+Seek_time += abs(head – disk_size);
+Printf(“Total Seek Time (SCAN): %d\n”, seek_time);
+}
