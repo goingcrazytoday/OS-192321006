@@ -1,0 +1,9 @@
+// First Come First Served (FCFS) Disk Scheduling
+Void fcfsDiskScheduling(int requests[], int n, int head) {
+Int seek_time = 0;
+For (int I = 0; I &lt; n; i++) {
+Seek_time += abs(requests[i] – head);
+Head = requests[i];
+}
+Printf(“Total Seek Time (FCFS): %d\n”, seek_time);
+}
