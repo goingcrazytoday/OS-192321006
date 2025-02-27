@@ -1,0 +1,5 @@
+
+// SCAN Disk Scheduling
+Void scanDiskScheduling(int requests[], int n, int head, int disk_size) {
+Int seek_time = 0;
+Int direction = 1; // 1 for right, -1 for left
