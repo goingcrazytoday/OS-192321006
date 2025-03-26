@@ -1,0 +1,29 @@
+#include <stdio.h>
+#include <string.h>
+
+struct File {
+    char name[20];
+    int size;
+};
+
+int main() {
+    struct File files[10];
+    int n, i;
+
+    printf("Enter number of files: ");
+    scanf("%d", &n);
+
+    for (i = 0; i < n; i++) {
+        printf("Enter file %d name: ", i + 1);
+        scanf("%s", files[i].name);
+        printf("Enter file %d size: ", i + 1);
+        scanf("%d", &files[i].size);
+    }
+
+    printf("\nStored Files:\n");
+    for (i = 0; i < n; i++) {
+        printf("File: %s, Size: %d KB\n", files[i].name, files[i].size);
+    }
+
+    return 0;
+}
