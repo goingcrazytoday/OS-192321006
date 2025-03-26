@@ -1,0 +1,65 @@
+‹#include <stdio.h>
+#include <stdlib.h>
+
+void SCAN(int arr[], int size, int head, int disk_size, int direction) {
+    int seek = 0, distance, curTrack;
+    int left[20], right[20], l = 0, r = 0;
+
+    if (direction == 0)
+        left[l++] = 0;
+    else
+        right[r++] = disk_size - 1;
+
+    for (int i = 0; i < size; i++) {
+        if (arr[i] < head)
+            left[l++] = arr[i];
+        else
+            right[r++] = arr[i];
+    }
+
+    qsort(left, l, sizeof(int), (int (*)(const void *, const void *))strcmp);
+    qsort(right, r, sizeof(int), (int (*)(const void *, const void *))strcmp);
+
+    printf("Seek Sequence: %d", head);
+    if (direction == 1) {
+        for (int i = 0; i < r; i++) {
+            curTrack = right[i];
+            distance = abs(curTrack - head);
+            seek += distance;
+            head = curTrack;
+            printf(" -> %d", curTrack);
+        }
+        for (int i = l - 1; i >= 0; i--) {
+            curTrack = left[i];
+            distance = abs(curTrack - head);
+            seek += distance;
+            head = curTrack;
+            printf(" -> %d", curTrack);
+        }
+    } else {
+        for (int i = l - 1; i >= 0; i--) {
+            curTrack = left[i];
+            distance = abs(curTrack - head);
+            seek += distance;
+            head = curTrack;
+            printf(" -> %d", curTrack);
+        }
+        for (int i = 0; i < r; i++) {
+            curTrack = right[i];
+            distance = abs(curTrack - head);
+            seek += distance;
+            head = curTrack;
+            printf(" -> %d", curTrack);
+        }
+    }
+    printf("\nTotal Seek Time: %d\n", seek);
+}
+
+int main() {
+    int arr[] = {98, 183, 37, 122, 14, 124, 65, 67};
+    int head = 53, disk_size = 200, direction = 1;
+    int n = sizeof(arr) / sizeof(arr[0]);
+
+    SCAN(arr, n, head, disk_size, direction);
+    return 0;
+}
