@@ -1,0 +1,42 @@
+#include <stdio.h>
+#include <string.h>
+
+struct File {
+    char name[20];
+};
+
+struct Directory {
+    char dirName[20];
+    struct File files[10];
+    int fileCount;
+};
+
+int main() {
+    struct Directory directories[5];
+    int dirCount, i, j;
+
+    printf("Enter number of directories: ");
+    scanf("%d", &dirCount);
+
+    for (i = 0; i < dirCount; i++) {
+        printf("Enter directory name: ");
+        scanf("%s", directories[i].dirName);
+        printf("Enter number of files in %s: ", directories[i].dirName);
+        scanf("%d", &directories[i].fileCount);
+
+        for (j = 0; j < directories[i].fileCount; j++) {
+            printf("Enter file %d name: ", j + 1);
+            scanf("%s", directories[i].files[j].name);
+        }
+    }
+
+    printf("\nDirectory Structure:\n");
+    for (i = 0; i < dirCount; i++) {
+        printf("Directory: %s\n", directories[i].dirName);
+        for (j = 0; j < directories[i].fileCount; j++) {
+            printf("  - %s\n", directories[i].files[j].name);
+        }
+    }
+
+    return 0;
+}
